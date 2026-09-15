@@ -1,0 +1,239 @@
+[gd_scene format=3 uid="uid://cicrblv87b3wb"]
+
+[ext_resource type="Script" uid="uid://cgt7gnwesn3vt" path="res://transition_manager.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://8pkmwavmpll4" path="res://baloon_manager.gd" id="1_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://c6qoe3y5mbd24" path="res://assets/globit.png" id="1_feb5d"]
+[ext_resource type="Texture2D" uid="uid://bfjcijurdfpp4" path="res://icon.svg" id="2_feb5d"]
+[ext_resource type="Texture2D" uid="uid://cx3pqenifm2d2" path="res://assets/chain_sprite.png" id="3_7jktm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2ov6r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_006r0"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_006r0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m32e"]
+size = Vector2(8, 32)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2m32e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y1g7"]
+size = Vector2(721, 28)
+
+[node name="Game" type="Node2D" unique_id=130977296]
+
+[node name="BaloonManager" type="Node2D" parent="." unique_id=887546050 node_paths=PackedStringArray("rope")]
+script = ExtResource("1_fc0e3")
+rope = NodePath("")
+
+[node name="Balloon" type="RigidBody2D" parent="BaloonManager" unique_id=158244710]
+position = Vector2(427, 419)
+rotation = 1.5707964
+mass = 0.4
+physics_material_override = SubResource("PhysicsMaterial_2ov6r")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaloonManager/Balloon" unique_id=1549797159]
+scale = Vector2(10, 10)
+texture = ExtResource("1_feb5d")
+offset = Vector2(0, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/Balloon" unique_id=2007494877]
+scale = Vector2(10, 10)
+shape = SubResource("CapsuleShape2D_006r0")
+
+[node name="Rope" type="Node2D" parent="BaloonManager" unique_id=1984252721]
+position = Vector2(347, 353)
+
+[node name="chain" type="RigidBody2D" parent="BaloonManager/Rope" unique_id=1763431631]
+position = Vector2(-5, 91)
+mass = 0.004
+physics_material_override = SubResource("PhysicsMaterial_006r0")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BaloonManager/Rope/chain" unique_id=88290739]
+position = Vector2(0, -18)
+node_a = NodePath("../../../Balloon")
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaloonManager/Rope/chain" unique_id=1849816773]
+position = Vector2(0, -4)
+scale = Vector2(0.53125, 1)
+texture = ExtResource("3_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/Rope/chain" unique_id=93975514]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2m32e")
+
+[node name="chain2" type="RigidBody2D" parent="BaloonManager/Rope" unique_id=2028385720]
+position = Vector2(-33, 90)
+mass = 0.004
+physics_material_override = SubResource("PhysicsMaterial_006r0")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BaloonManager/Rope/chain2" unique_id=1846525246]
+position = Vector2(0, 9)
+node_a = NodePath("../../chain")
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaloonManager/Rope/chain2" unique_id=1468312139]
+position = Vector2(0, -4)
+scale = Vector2(0.53125, 1)
+texture = ExtResource("3_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/Rope/chain2" unique_id=731921455]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2m32e")
+
+[node name="chain3" type="RigidBody2D" parent="BaloonManager/Rope" unique_id=1507944874]
+position = Vector2(-33, 90)
+mass = 0.004
+physics_material_override = SubResource("PhysicsMaterial_006r0")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BaloonManager/Rope/chain3" unique_id=1807435258]
+position = Vector2(0, 9)
+node_a = NodePath("../../chain2")
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaloonManager/Rope/chain3" unique_id=1493241596]
+position = Vector2(0, -4)
+scale = Vector2(0.53125, 1)
+texture = ExtResource("3_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/Rope/chain3" unique_id=512227665]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2m32e")
+
+[node name="chain4" type="RigidBody2D" parent="BaloonManager/Rope" unique_id=800079051]
+position = Vector2(-33, 90)
+mass = 0.004
+physics_material_override = SubResource("PhysicsMaterial_006r0")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BaloonManager/Rope/chain4" unique_id=1727919533]
+position = Vector2(0, 9)
+node_a = NodePath("../../chain3")
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaloonManager/Rope/chain4" unique_id=1329935236]
+position = Vector2(0, -4)
+scale = Vector2(0.53125, 1)
+texture = ExtResource("3_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/Rope/chain4" unique_id=2139322846]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2m32e")
+
+[node name="chain5" type="RigidBody2D" parent="BaloonManager/Rope" unique_id=240597107]
+position = Vector2(-33, 90)
+mass = 0.004
+physics_material_override = SubResource("PhysicsMaterial_006r0")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BaloonManager/Rope/chain5" unique_id=903708169]
+position = Vector2(0, 9)
+node_a = NodePath("../../chain4")
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaloonManager/Rope/chain5" unique_id=636871771]
+position = Vector2(0, -4)
+scale = Vector2(0.53125, 1)
+texture = ExtResource("3_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/Rope/chain5" unique_id=718715536]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2m32e")
+
+[node name="chain6" type="RigidBody2D" parent="BaloonManager/Rope" unique_id=871304650]
+position = Vector2(-33, 90)
+mass = 0.004
+physics_material_override = SubResource("PhysicsMaterial_006r0")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BaloonManager/Rope/chain6" unique_id=398522491]
+position = Vector2(0, 9)
+node_a = NodePath("../../chain5")
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaloonManager/Rope/chain6" unique_id=1741319279]
+position = Vector2(0, -4)
+scale = Vector2(0.53125, 1)
+texture = ExtResource("3_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/Rope/chain6" unique_id=671626623]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2m32e")
+
+[node name="chain7" type="RigidBody2D" parent="BaloonManager/Rope" unique_id=2056215611]
+position = Vector2(-33, 90)
+mass = 0.004
+physics_material_override = SubResource("PhysicsMaterial_006r0")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BaloonManager/Rope/chain7" unique_id=331112243]
+position = Vector2(0, 9)
+node_a = NodePath("../../chain6")
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaloonManager/Rope/chain7" unique_id=546563997]
+position = Vector2(0, -4)
+scale = Vector2(0.53125, 1)
+texture = ExtResource("3_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/Rope/chain7" unique_id=1136587632]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2m32e")
+
+[node name="chain8" type="RigidBody2D" parent="BaloonManager/Rope" unique_id=932191240]
+position = Vector2(-33, 90)
+mass = 0.004
+physics_material_override = SubResource("PhysicsMaterial_006r0")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BaloonManager/Rope/chain8" unique_id=792216669]
+position = Vector2(0, 9)
+node_a = NodePath("../../chain7")
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaloonManager/Rope/chain8" unique_id=383327364]
+position = Vector2(0, -4)
+scale = Vector2(0.53125, 1)
+texture = ExtResource("3_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/Rope/chain8" unique_id=671831452]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2m32e")
+
+[node name="chain9" type="RigidBody2D" parent="BaloonManager/Rope" unique_id=325953640]
+position = Vector2(-33, 90)
+mass = 0.004
+physics_material_override = SubResource("PhysicsMaterial_006r0")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BaloonManager/Rope/chain9" unique_id=2077780468]
+position = Vector2(0, 9)
+node_a = NodePath("../../chain8")
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaloonManager/Rope/chain9" unique_id=806328855]
+position = Vector2(0, -4)
+scale = Vector2(0.53125, 1)
+texture = ExtResource("3_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/Rope/chain9" unique_id=2003581889]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2m32e")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BaloonManager" unique_id=847231182]
+position = Vector2(4, 483)
+physics_material_override = SubResource("PhysicsMaterial_2m32e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/StaticBody2D" unique_id=1308609159]
+position = Vector2(350.5, 13)
+shape = SubResource("RectangleShape2D_1y1g7")
+
+[node name="PumpManager" type="Node2D" parent="." unique_id=1817054514]
+
+[node name="TransitionManager" type="Node2D" parent="." unique_id=65179397 node_paths=PackedStringArray("current_sprite")]
+script = ExtResource("1_e2o6t")
+stage_sprites = Array[Texture2D]([ExtResource("2_feb5d")])
+current_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="TransitionManager" unique_id=1890155666]
+unique_name_in_owner = true
+
+[node name="EnemeyManager" type="Node2D" parent="." unique_id=1175769898]
+position = Vector2(7, 0)
