@@ -22,7 +22,19 @@ size = Vector2(8, 32)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2m32e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y1g7"]
-size = Vector2(721, 28)
+size = Vector2(2198, 28)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ov6r"]
+bg_color = Color(0.9493359, 0.38161907, 0.46686, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5wjh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hve3p"]
+bg_color = Color(0.44716817, 0.67860204, 0.1994077, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eow3j"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_eow3j"]
 
 [node name="Game" type="Node2D" unique_id=130977296]
 script = ExtResource("1_eow3j")
@@ -262,29 +274,64 @@ collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_2m32e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaloonManager/ground" unique_id=1308609159]
-position = Vector2(350.5, 13)
+position = Vector2(397, 13)
 shape = SubResource("RectangleShape2D_1y1g7")
 
 [node name="PumpManager" type="Node2D" parent="." unique_id=1817054514]
 script = ExtResource("5_j5wjh")
 
+[node name="Succes" type="ProgressBar" parent="PumpManager" unique_id=1085319660]
+offset_left = 651.0
+offset_top = 102.0
+offset_right = 712.0
+offset_bottom = 419.0
+theme_override_styles/background = SubResource("StyleBoxFlat_2ov6r")
+show_percentage = false
+
+[node name="Failure" type="ProgressBar" parent="PumpManager" unique_id=746481705]
+offset_left = 651.0
+offset_top = 102.0
+offset_right = 712.0
+offset_bottom = 419.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_j5wjh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hve3p")
+value = 30.0
+fill_mode = 3
+show_percentage = false
+
+[node name="ProgressBar" type="ProgressBar" parent="PumpManager" unique_id=183204986]
+offset_left = 651.0
+offset_top = 102.0
+offset_right = 712.0
+offset_bottom = 419.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_eow3j")
+theme_override_styles/fill = SubResource("StyleBoxLine_eow3j")
+fill_mode = 3
+show_percentage = false
+
 [node name="TransitionManager" type="Node2D" parent="." unique_id=65179397 node_paths=PackedStringArray("current_sprite")]
 script = ExtResource("1_e2o6t")
 stage_sprites = Array[Texture2D]([ExtResource("2_feb5d")])
-current_sprite = NodePath("Sprite2D")
+current_sprite = NodePath("")
 
-[node name="Sprite2D" type="Sprite2D" parent="TransitionManager" unique_id=1890155666]
-unique_name_in_owner = true
-
-[node name="EnemeyManager" type="Node2D" parent="." unique_id=1175769898]
+[node name="EnemyManager" type="Node2D" parent="." unique_id=1175769898]
 position = Vector2(7, 0)
 
-[node name="Button" type="Button" parent="." unique_id=574871486]
-offset_left = -4.0
-offset_top = 248.0
-offset_right = 50.0
-offset_bottom = 279.0
-text = "inflar
+[node name="pump_button" type="Button" parent="." unique_id=574871486]
+offset_left = 8.0
+offset_top = 230.0
+offset_right = 62.0
+offset_bottom = 261.0
+text = "PUMP
+
 "
 
-[connection signal="button_down" from="Button" to="." method="player_pump"]
+[node name="reset_buton" type="Button" parent="." unique_id=1034763942]
+offset_left = 6.0
+offset_top = 179.0
+offset_right = 60.0
+offset_bottom = 210.0
+text = "RESET"
+
+[connection signal="button_down" from="pump_button" to="." method="on_player_pump"]
+[connection signal="button_down" from="reset_buton" to="." method="on_reset_button"]
