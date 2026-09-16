@@ -908,12 +908,9 @@ autoplay = "default"
 
 [node name="Stage5" type="Node2D" parent="TransitionManager" unique_id=2087766085]
 
-[node name="BaloonManager" type="Node2D" parent="." unique_id=887546050 node_paths=PackedStringArray("balloon", "balloon_sprite", "balloon_hitbox")]
+[node name="BaloonManager" type="Node2D" parent="." unique_id=887546050]
 position = Vector2(-14, -1)
 script = ExtResource("1_fc0e3")
-balloon = NodePath("Balloon")
-balloon_sprite = NodePath("Balloon/Sprite2D")
-balloon_hitbox = NodePath("Balloon/CollisionShape2D")
 
 [node name="Rope" type="Node2D" parent="BaloonManager" unique_id=1984252721]
 position = Vector2(437, 361)
@@ -1158,6 +1155,7 @@ script = ExtResource("18_qhcbd")
 [node name="Cat" type="RigidBody2D" parent="EnemyManager" unique_id=432949131]
 process_mode = 4
 position = Vector2(684, 427)
+input_pickable = true
 lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 4
@@ -1176,11 +1174,12 @@ autostart = true
 
 [node name="Timer" type="Timer" parent="EnemyManager/Cat" unique_id=339320232]
 
-[node name="birds" type="Node" parent="EnemyManager" unique_id=859768313]
+[node name="birds" type="Node2D" parent="EnemyManager" unique_id=79109172]
 process_mode = 4
 script = ExtResource("21_vaj68")
 
 [node name="Bird" type="RigidBody2D" parent="EnemyManager/birds" unique_id=141326103]
+input_pickable = true
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 5
@@ -1198,6 +1197,7 @@ shape = SubResource("CircleShape2D_2ov6r")
 
 [node name="Bird2" type="RigidBody2D" parent="EnemyManager/birds" unique_id=1788052142]
 position = Vector2(-193, 91)
+input_pickable = true
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 5
@@ -1215,6 +1215,7 @@ shape = SubResource("CircleShape2D_2ov6r")
 
 [node name="Bird3" type="RigidBody2D" parent="EnemyManager/birds" unique_id=2102457695]
 position = Vector2(-75, -116)
+input_pickable = true
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 5
@@ -1232,6 +1233,7 @@ shape = SubResource("CircleShape2D_2ov6r")
 
 [node name="Bird4" type="RigidBody2D" parent="EnemyManager/birds" unique_id=926703631]
 position = Vector2(-126, 154)
+input_pickable = true
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 5

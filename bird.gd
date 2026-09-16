@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D # Debe ser Area2D para detectar clics en este contexto
 
 class_name Bird
 
@@ -25,12 +25,27 @@ func reset() -> void:
 	
 	global_position = Vector2(spawn_x, spawn_y)
 
+	# Dirección de vuelo
+	if global_position.x < 0:
+		direction = 1.0
+		$AnimatedSprite2D.flip_h = false # Mira hacia la derecha
+	else:
+		direction = -1.0
+		$AnimatedSprite2D.flip_h = true  # Invierte la imagen para mirar a la izquierda
+	
+	global_position = Vector2(spawn_x, spawn_y)
+
 	if global_position.x < 0:
 		direction = 1.0
 	else:
 		direction = -1.0
 
-
 func _on_body_entered(body: Node) -> void:
 	print(id)
-	pass # Replace with function body.
+	pass # Aca reventará el globo
+
+# --- NUEVO CÓDIGO ---
+func _input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	# Verificamos el evento
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		reset() # Un solo clic reinicia la posición del pájaro, alejándolo del globo
