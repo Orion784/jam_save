@@ -14,11 +14,15 @@ func _ready() -> void:
 	balloon.mass = 0.4
 	pass # Replace with function body.
 
-func reset_ballon() -> void :
+func empty_ballon() -> void :
 	balloon_sprite.scale = Vector2(10,10)
 	balloon_hitbox.scale = Vector2(10,10)
 	balloon.gravity_scale = 1
 	is_tutorial = true
+
+func reset_balloon() -> void :
+	balloon_sprite.scale = Vector2(10,10)
+	balloon_hitbox.scale = Vector2(10,10)
 
 func inflate() -> void :
 	if is_tutorial :
@@ -28,7 +32,8 @@ func inflate() -> void :
 		balloon.gravity_scale -= 0.3
 		if balloon.gravity_scale >= -1:
 			balloon.gravity_scale = -1
-		balloon_sprite.scale += Vector2(3,3)
-		balloon_hitbox.scale += Vector2(3,3)
+	balloon_sprite.scale += Vector2(3,3)
+	balloon_hitbox.scale += Vector2(3,3)
+
 func _process(delta: float) -> void:
 	pass
