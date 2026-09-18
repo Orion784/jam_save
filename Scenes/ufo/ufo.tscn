@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://caxii26fln4o0"]
+
+[ext_resource type="Script" uid="uid://dxlppuxwm54vn" path="res://ufo.gd" id="1_1goq8"]
+[ext_resource type="Texture2D" uid="uid://b87x2l6erko2v" path="res://assets/blue ufo (copia 1).png" id="2_mjwqm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ov6r"]
+radius = 11.0
+height = 34.0
+
+[node name="Ufo" type="RigidBody2D" unique_id=66717445 node_paths=PackedStringArray("sprite", "visible_on_screen_notifier_2d")]
+input_pickable = true
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_1goq8")
+sprite = NodePath("Sprite2D")
+visible_on_screen_notifier_2d = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2097854376]
+texture = ExtResource("2_mjwqm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=199074284]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_2ov6r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2116153669]
+
+[node name="Timer" type="Timer" parent="." unique_id=1613658469]
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1260587162]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_screen_exited"]

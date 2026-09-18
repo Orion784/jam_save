@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bkjluwwtvrr1w"]
+
+[ext_resource type="Script" uid="uid://clwncy161lib2" path="res://cat.gd" id="1_2esr3"]
+
+[node name="Cat" type="Node2D" unique_id=1853464215]
+script = ExtResource("1_2esr3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=409927728]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=658181197]
